@@ -4,7 +4,7 @@ import com.edutech.progressive.entity.Team;
  
 import java.sql.SQLException;
 import java.util.List;
-
+ 
 public interface TeamService {
  
     List<Team> getAllTeams() throws SQLException;
