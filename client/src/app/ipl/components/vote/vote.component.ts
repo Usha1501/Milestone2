@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-// If you created types on Day 16, import them; otherwise, you can keep it typed as `any`
+
 import { Vote } from '../../types/Vote';
 
 @Component({
@@ -15,7 +15,7 @@ export class VoteComponent implements OnInit {
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
-  // Use exact strings as required by spec
+
   readonly categories = ['Team', 'Batsman', 'Bowler', 'All-rounder', 'Wicketkeeper'] as const;
 
   constructor(private fb: FormBuilder) {}
@@ -29,13 +29,13 @@ export class VoteComponent implements OnInit {
       teamId: [null, [Validators.min(1)]],
     });
 
-    // Optional: dynamic validation — if category is 'Team', require teamId; otherwise require cricketerId
+    
     this.voteForm.get('category')?.valueChanges.subscribe((cat) => {
       const cricketerIdCtrl = this.voteForm.get('cricketerId');
       const teamIdCtrl = this.voteForm.get('teamId');
       if (!cricketerIdCtrl || !teamIdCtrl) return;
 
-      // reset validators
+      
       cricketerIdCtrl.clearValidators();
       teamIdCtrl.clearValidators();
 
@@ -77,7 +77,7 @@ export class VoteComponent implements OnInit {
         }
     };
 
-    // TODO (Day 23+): integrate with backend via service
+    
     console.log('Vote submitted:', payload);
 
     this.vote = payload;
