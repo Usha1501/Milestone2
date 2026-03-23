@@ -4,10 +4,12 @@
     padding: 1rem;
     background-color: #f9f9f9;
     border-radius: 10px;
+  
     h2 {
       text-align: center;
       color: #007bff;
     }
+  
     button {
       display: block;
       margin: 1rem auto;
@@ -17,25 +19,32 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-&:hover {
+  
+      &:hover {
         background-color: #0056b3;
       }
     }
+  
     ul {
       list-style-type: none;
       padding: 0;
+  
       li {
         margin-bottom: 1rem;
         padding: 1rem;
         background-color: #fff;
         border: 1px solid #ddd;
         border-radius: 8px;
+  
         h3 {
           margin: 0 0 0.5rem 0;
         }
+  
         p {
           margin: 0.2rem 0;
         }
       }
     }
   }
+  
+  

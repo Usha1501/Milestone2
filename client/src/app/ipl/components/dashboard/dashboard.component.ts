@@ -7,7 +7,7 @@ import { TicketBooking } from '../../types/TicketBooking';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Vote } from '../../types/Vote';
 import { Router } from '@angular/router';
-
+ 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -23,14 +23,14 @@ export class DashboardComponent implements OnInit {
   voteArray: { key: string, value: number }[] = [];
   emailForm!: FormGroup;
   role!: string| null;
-  userId!: number; 
-
+  userId!: number;
+ 
   constructor(
     private readonly iplService: IplService,
     private readonly fb: FormBuilder,
     private router: Router
   ) {}
-
+ 
   ngOnInit(): void {
     this.role = localStorage.getItem("role");
     this.userId = Number(localStorage.getItem("user_id"));
@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
       this.loadUserData();
     }
   }
-
+ 
   loadAdminData(): void {
     this.loadTeams();
     this.loadCricketers();
@@ -59,23 +59,36 @@ export class DashboardComponent implements OnInit {
         console.log('Ticket bookings loaded successfully.');
       }
     });
-
+ 
+    // this.iplService.getVotesCountOfAllCategories().subscribe({
+    //   next: (response) => {
+    //     const voteMap: Map<string, number> = response;
+    //     if (voteMap.size > 0) {
+    //       this.voteArray = Array.from(voteMap.entries()).map(([key, value]) => ({ key, value }));
+    //     }
+    //   },
+    //   error: (error) => {
+    //     console.error('Error loading votes count of all categories.', error);
+    //   },
+    //   complete: () => {
+    //     console.log('Votes count of all categories loaded successfully.');
+    //   }
+    // });
     this.iplService.getVotesCountOfAllCategories().subscribe({
-      next: (response) => {
-        const voteMap: Map<string, number> = response;
-        if (voteMap.size > 0) {
-          this.voteArray = Array.from(voteMap.entries()).map(([key, value]) => ({ key, value }));
-        }
-      },
-      error: (error) => {
-        console.error('Error loading votes count of all categories.', error);
-      },
-      complete: () => {
-        console.log('Votes count of all categories loaded successfully.');
-      }
-    });
+  next: (res) => {
+    const entries = Object.entries(res || {}); // e.g., [["Team", 3], ["Cricketer", 5]]
+    this.voteArray = entries.map(([key, value]) => ({ key, value }));
+  },
+  error: (error) => {
+    console.error('Error loading votes count of all categories.', error);
+    this.voteArray = [];
+  },
+  complete: () => {
+    console.log('Votes count of all categories loaded successfully.');
   }
-
+});
+  }
+ 
   loadUserData(): void {
     this.loadTeams();
     this.loadCricketers();
@@ -92,7 +105,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-
+ 
   loadTeams(): void {
     this.iplService.getAllTeams().subscribe({
       next: (response) => {
@@ -106,7 +119,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-
+ 
   loadCricketers(): void {
     this.iplService.getAllCricketers().subscribe({
       next: (response) => {
@@ -120,7 +133,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-
+ 
   loadMatches(): void {
     this.iplService.getAllMatches().subscribe({
       next: (response) => {
@@ -134,7 +147,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-
+ 
   loadTicketsBooked(): void {
     const email = this.emailForm.get('email')?.value;
     this.iplService.getBookingsByUserEmail(email).subscribe({
@@ -149,25 +162,25 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-
+ 
   onSubmitEmail(): void {
     if (this.emailForm.valid) {
       this.loadTicketsBooked();
     }
   }
-
+ 
   editTeam(teamId: number) {
     this.router.navigate(['/ipl/team/edit', teamId]);
   }
-
+ 
   editCricketer(cricketerId: number) {
     this.router.navigate(['/ipl/cricketer/edit', cricketerId]);
   }
-
+ 
   editMatch(matchId: number) {
     this.router.navigate(['/ipl/match/edit', matchId]);
   }
-
+ 
   deleteTeam(teamId: number): void {
     if (confirm('Are you sure you want to delete this team?')) {
       this.iplService.deleteTeam(teamId).subscribe({
@@ -182,7 +195,7 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
-
+ 
   deleteCricketer(cricketerId: number) {
     if (confirm('Are you sure you want to delete this cricketer?')) {
       this.iplService.deleteCricketer(cricketerId).subscribe({
@@ -197,7 +210,7 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
-
+ 
   deleteMatch(matchId: number) {
     if (confirm('Are you sure you want to delete this Match?')) {
       this.iplService.deleteMatch(matchId).subscribe({

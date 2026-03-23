@@ -1,20 +1,20 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Cricketer } from '../../types/Cricketer';
- 
+
 @Component({
   selector: 'app-cricketerarray',
   templateUrl: './cricketerarray.component.html',
   styleUrls: ['./cricketerarray.component.scss']
 })
 export class CricketerArrayComponent implements OnInit {
- 
+
   // Cricketers array to hold JSON data
   cricketers: Cricketer[] = [];
   showCricketers: boolean = true;
- 
+
   constructor() {}
- 
+
   ngOnInit(): void {
     // Initialize the cricketers array with sample data
     this.cricketers = [
@@ -24,7 +24,7 @@ export class CricketerArrayComponent implements OnInit {
       new Cricketer(4, 104, 'Ben Stokes', 30, 'English', 10, 'All-Rounder', 4500, 150)
     ];
   }
- 
+
   // Method to toggle cricketer display
   toggleCricketers(): void {
     this.showCricketers = !this.showCricketers;
