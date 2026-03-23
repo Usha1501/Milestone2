@@ -6,9 +6,14 @@
   .card-header {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
+    background-color: #7b1fa2; /* purple header */
+    color: white; /* header text */
   }
 
   .list-group-item {
     font-size: 0.95rem;
+    border: 1px solid #b39ddb; /* light purple border */
+    color: #4a148c; /* dark purple text */
+    background-color: #faf5ff; /* very light purple background */
   }
 }

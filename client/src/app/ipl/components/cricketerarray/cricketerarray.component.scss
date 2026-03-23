@@ -2,49 +2,49 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 1rem;
-    background-color: #f9f9f9;
+    background-color: #f3e5f5; /* light purple background */
     border-radius: 10px;
-  
+
     h2 {
       text-align: center;
-      color: #007bff;
+      color: #7b1fa2; /* purple heading */
     }
-  
+
     button {
       display: block;
       margin: 1rem auto;
       padding: 0.5rem 1rem;
-      background-color: #007bff;
+      background-color: #7b1fa2; /* purple button */
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-  
+
       &:hover {
-        background-color: #0056b3;
+        background-color: #6a1b9a; /* darker purple */
       }
     }
-  
+
     ul {
       list-style-type: none;
       padding: 0;
-  
+
       li {
         margin-bottom: 1rem;
         padding: 1rem;
-        background-color: #fff;
-        border: 1px solid #ddd;
+        background-color: #ffffff;
+        border: 1px solid #b39ddb; /* purple-toned border */
         border-radius: 8px;
-  
+
         h3 {
           margin: 0 0 0.5rem 0;
+          color: #4a148c; /* dark purple */
         }
-  
+
         p {
           margin: 0.2rem 0;
+          color: #6a1b9a; /* softer purple text */
         }
       }
     }
-  }
-  
-  
+}
